@@ -1,0 +1,154 @@
+<navbar></navbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <mat-card class="overflow-topic">
+      <h3 class="topic-head">Topics</h3>
+      <div *ngFor="let topic of Topic">
+        <span class="discuss-span">{{ topic.topicName }}</span>
+        <button
+          mat-button
+          class="add-btn discuss-btn"
+          color="accent"
+          (click)="
+            addDiscussionUnderTopic(topic._id, topic.topicId); sidenav.toggle()
+          "
+        >
+          Discuss
+        </button>
+      </div>
+      <mat-form-field
+        *ngIf="userName != 'Geust Geust'"
+        class="example-full-width create-topic-form-field"
+      >
+        <input
+          matInput
+          placeholder="Create Topic"
+          [(ngModel)]="topicName"
+          value="Sushi"
+        />
+      </mat-form-field>
+      <button
+        *ngIf="userName != 'Geust Geust'"
+        class="add-btn"
+        mat-button
+        (click)="createTopic()"
+        color="accent"
+      >
+        Create Topic
+      </button>
+    </mat-card>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="container-height">
+    <div *ngIf="progressSpinner" class="spinner">
+      <div
+        class="spinner-grow text-primary"
+        style="width: 5rem; height: 5rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <br />
+    <p>
+      <button
+        *ngIf="userName != 'Geust Geust'"
+        mat-button
+        class="add-btn add-topic-btn-align"
+        color="primary"
+        (click)="sidenav.toggle()"
+      >
+        Add a Topic
+      </button>
+
+      <button
+        *ngIf="userName == 'Geust Geust'"
+        mat-button
+        class="add-btn add-topic-btn-align"
+        color="primary"
+        (click)="sidenav.toggle()"
+      >
+        View Topic
+      </button>
+    </p>
+
+    <div class="container">
+      <div
+        *ngIf="userName != 'Geust Geust'"
+        style="margin-top: 8vh"
+        class="row"
+      >
+        <input
+          type="text"
+          [(ngModel)]="discussionNameEntered"
+          name=""
+          id=""
+          class="form-control col col-sm-8"
+          #discussion
+        />
+        <input
+          type="button"
+          (click)="addDiscussionContent(discussion.value)"
+          value="Add Discussion"
+          class="btn btn-primary col col-sm-3 offset-1 add-btn"
+        />
+      </div>
+    </div>
+
+    <div
+      id="discussion-container"
+      style="overflow-y: auto"
+      class="container mt-5"
+    >
+      <div class="row">
+        <div class="col-md-12">
+          <mat-list *ngFor="let discussion of toDoTopic" role="list">
+            <mat-card class="content-align" role="listitem">
+              {{ discussion.discussionName }}
+
+              <span class="dropdown">
+                <a
+                  class="btn btn-link"
+                  id="discussionDropdown"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  matTooltip="Options for Discussion"
+                >
+                  <i class="fa fa-ellipsis-h"></i>
+                </a>
+
+                <span
+                  class="dropdown-menu"
+                  aria-labelledby="discussionDropdown"
+                >
+                  <a
+                    class="dropdown-item"
+                    [routerLink]="[
+                      '/discussion/discussion-description/',
+                      discussion.discussionId
+                    ]"
+                  >
+                    <i class="fa fa-info-circle"></i> &nbsp;
+                    <span>View Details</span>
+                  </a>
+                </span>
+              </span>
+            </mat-card>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+    <div class="paginator-align">
+      <mat-paginator
+        class="mat-elevation-z5 col-md-12"
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageIndex]="pageIndex"
+        (page)="pageEvent = getServerData($event)"
+      >
+      </mat-paginator>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

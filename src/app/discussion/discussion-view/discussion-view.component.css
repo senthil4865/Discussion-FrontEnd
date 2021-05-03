@@ -1,0 +1,85 @@
+.friend-sidenav {
+  width: 100%;
+  background-color: #f4f4f4;
+}
+
+.box {
+  box-shadow: 0 4px 8px 0 #48cdc8, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.paginator-align {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.overflow-topic {
+  max-height: 100vh;
+  height: 100vh;
+  overflow: auto;
+}
+
+
+.spinner {
+  position: fixed;
+  z-index: 1031;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container-height {
+  height: 100vh;
+}
+
+.add-btn {
+  background: white;
+  border: 2px solid #3f51b5;
+  color: #3f51b5;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.discuss-span {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 23px;
+  color: #3f51b5;
+}
+
+.discuss-btn {
+  width: 119px;
+  float: right;
+}
+
+.create-topic-form-field {
+  width: 141px;
+  margin: 20px;
+}
+
+.topic-head {
+  text-align: center;
+  font-size: 40px;
+  margin-top: -21px;
+}
+
+.add-topic-btn-align {
+  margin-left: 14%;
+}
+
+.content-align {
+  width: 70%;
+  border: 1px solid #3f51b5;
+}
+
+.dropdown-align {
+  float: right;
+}

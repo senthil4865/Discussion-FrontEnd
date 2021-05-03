@@ -1,0 +1,46 @@
+<div>Discussion Desciption</div>
+
+<mat-card>
+  <div *ngIf="discussionforDescription && !friendDescription">
+    <div class="creator-font">
+      {{ discussionforDescription.discussionCreatedBy.firstName }}
+      {{ discussionforDescription.discussionCreatedBy.lastName }}
+    </div>
+    <br />
+    <mat-card class="desc-border">{{
+      discussionforDescription.discussionName | uppercase
+    }}</mat-card>
+
+    <h3>Comments</h3>
+    <div *ngFor="let comment of comments">
+      <h2>{{ comment.commentedBy }}</h2>
+      <h4>{{ comment.comment }}</h4>
+      <hr />
+    </div>
+
+    <ng-container *ngIf="userName != 'Geust Geust'">
+      <h3>Add Comment</h3>
+      <pre class="pre-size" ID="preContent">
+    <div class="editor-size" contenteditable="true" >
+    
+  
+    </div>
+   
+  </pre>
+
+      <button color="accent" mat-button (click)="addComment()">Comment</button>
+    </ng-container>
+
+    <br />
+
+    <button mat-button (click)="goBack()" color="accent">Go Back</button>
+  </div>
+</mat-card>
+
+<mat-card *ngIf="friendDescription">
+  <div>
+    No Description for this Notification(Either it might be deleted discussions
+    or related to friend requests or Topics or subdiscussions).Please Go Back
+  </div>
+  <button mat-button (click)="goBack()" color="accent">Go Back</button>
+</mat-card>
